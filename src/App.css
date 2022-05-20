@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.content {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  margin-top: 300px;
+  position: absolute;
+  z-index: 2;
+}
+
+.mobilePage {
+  display: none;
+}
+
+@media only screen and (max-width: 850px) { 
+  .placeholder  { 
+      display: none; 
+  } 
+  .mobilePage {
+      display: block;
+  }
+}
