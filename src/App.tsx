@@ -26,6 +26,9 @@ function App() {
           <Typography variant="h1">
             NFT WHEEL
           </Typography>
+          <Typography variant="h6">
+            CLICK TO SPIN
+          </Typography>
           <img src={placeholderArt} alt="placeholderArt"/>
         </div>
         <Wheel items={places} />
