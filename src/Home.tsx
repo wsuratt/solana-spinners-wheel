@@ -12,8 +12,8 @@ import './homestyles.css';
 
 const Home = () => {
   const places = [
-    'Pizzas', 'Sandwiches', 'Salads', 'Soup', 'Japanese food', 'Pastas',
-    'Pizzas', 'Sandwiches', 'Salads', 'Soup', 'Japanese food', 'Pastas'
+    'SMB', 'Okay', 'Solana', 'SMB', 'Okay', 'Solana',
+    'SMB', 'Okay', 'Solana', 'SMB', 'Okay', 'Solana'
   ]
   return(
     <div>
