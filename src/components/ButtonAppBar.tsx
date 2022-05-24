@@ -13,7 +13,7 @@ export default function ButtonAppBar() {
       <AppBar position="static" sx={{ bgcolor: "white" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "black" }}>
-            TITLE
+            SOLANA SPINNER
           </Typography>
         </Toolbar>
       </AppBar>
