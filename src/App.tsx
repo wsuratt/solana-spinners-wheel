@@ -44,7 +44,7 @@ const App = () => {
     return (
       <div className="App">
         <ConnectionProvider endpoint={endpoint}>
-            <WalletProvider wallets={wallets} autoConnect={false}>
+            <WalletProvider wallets={wallets} autoConnect={true}>
                 <WalletModalProvider>
                     <Home/>
                     {/* <Maintenance/> */}
