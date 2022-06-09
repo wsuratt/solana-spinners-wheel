@@ -39,11 +39,11 @@ export default class Wheel extends React.Component {
 
     function ShowImage(props) {
       const wheelItem = props.wheelItem;
-      console.log(wheelItem)
-      if (wheelItem == 'SMB') {
+
+      if (wheelItem === 'SMB') {
         return <img src={smbArt} alt="smbArt" className='wheel-image'/>;
       }
-      else if (wheelItem == 'Okay') {
+      else if (wheelItem === 'Okay') {
         return <img src={okayArt} alt="okayArt" className='wheel-image'/>;
       }
       else {
