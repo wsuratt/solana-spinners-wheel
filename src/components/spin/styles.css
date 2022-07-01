@@ -1,6 +1,6 @@
 .container {
-  margin-top: 85px;
-  margin-bottom: 85px;
+  margin-top: 82px;
+  margin-bottom: 83px;
   display: grid;
   place-items: center;
   height: 100%;
@@ -31,7 +31,7 @@
   min-width: 590px;
   padding: 3px 10px;
   font-size: 24px;
-  letter-spacing: 12px;
+  /* letter-spacing: 12px; */
 }
 
 .spinner-items {

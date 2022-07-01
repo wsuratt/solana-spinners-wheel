@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './crate1.css';
+import './crate.css';
 
 export default class Crate extends React.Component {
 

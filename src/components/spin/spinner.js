@@ -5,7 +5,7 @@ import smbArt from '../../assets/smb.png'
 import okayArt from '../../assets/okay-bears.png'
 import solanaArt from '../../assets/solana-logo.png'
 
-export default class Spinner2 extends React.Component  {
+export default class Spinner extends React.Component  {
   render() {
     return (
       <div>
@@ -42,8 +42,8 @@ export default class Spinner2 extends React.Component  {
             </ul>
             <div className="spinner__marker" id="spinnerMarker"> </div>
           </div>
-          {/* <div className="spinner__won" id="spinnerWon"></div> */}
-          <div className="button" id="startSpinner">Spin Wheel!</div>
+          <div className="spinner__won" id="spinnerWon"></div>
+          <div className="button" id="startSpinner">Spin!</div>
           <Helmet>
             <script src="helper.js" type="text/javascript" />
           </Helmet>

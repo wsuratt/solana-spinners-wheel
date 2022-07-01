@@ -51,7 +51,7 @@
 }
 
 .tnt:after {
-  content: "1";
+  content: "?";
   color: yellow;
   width: 100%;
   top: 15%;

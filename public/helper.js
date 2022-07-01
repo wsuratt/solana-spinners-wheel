@@ -76,9 +76,12 @@ class SpinnerAnimation {
               this.offSet = 0;
               this.tick = true;
               this.ticks += 1;
-              if(this.ticks >= 20 && (Math.random() * 10) >= 5) {
-                  this.stop();
+              if(this.ticks >= 20 && (1 * 10) >= 5) {
+                this.stop();
               }
+            //   if(this.ticks >= 20 && (Math.random() * 10) >= 5) {
+            //       this.stop();
+            //   }
           }
 
           if(this.stopped) {
@@ -105,14 +108,16 @@ class SpinnerAnimation {
                       if(this.offSet >= 122) {
                         this.winningItem = 5;
                         this.spinnerItems.item(5).classList.add("win");
-                        this.spinnerWon.innerText += this.spinnerItems.item(5).innerText;
+                        // this.spinnerWon.innerText += this.spinnerItems.item(5).innerText;
+                        this.spinnerWon.innerText += 'You won a SMB!';
                         this.offSet = 122;
                       }
                       
                       if(this.offSet <= 0) {
                         this.winningItem = 4;
                         this.spinnerItems.item(4).classList.add("win");
-                        this.spinnerWon.innerText += this.spinnerItems.item(4).innerText;
+                        // this.spinnerWon.innerText += this.spinnerItems.item(4).innerText;
+                        this.spinnerWon.innerText += 'You won a SMB!';
                         this.offSet = 0;
                       }
                     

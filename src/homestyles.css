@@ -1,23 +1,24 @@
 .content {
   background-color: white;
   max-width: 100%;
-  padding: 5em;
+  padding-bottom: 20em;
+}
+
+.wheelCover {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  margin-top: -669px;
+  position: absolute;
+  z-index: 2;
 }
 
 .mobilePage {
   display: none;
 }
 
-.wallet-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
 @media only screen and (max-width: 850px) { 
-  .placeholder  { 
+  .regular  { 
       display: none; 
   } 
   .mobilePage {
