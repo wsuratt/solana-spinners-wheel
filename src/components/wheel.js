@@ -2,32 +2,45 @@ import React from 'react';
 import smbArt from '../assets/smb.png'
 import okayArt from '../assets/okay-bears.png'
 import solanaArt from '../assets/solana-logo.png'
+import {
+  spin
+} from "../utils";
 
 import './wheel.css';
+
+const images = [smbArt, okayArt, solanaArt];
+
+const prizeHashmap = new Map([
+  ["A9tNwrcznAaNRN99Uz86J6vgcLQJMBRpdcpL6dDmirV1", smbArt]
+])
 
 export default class Wheel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedItem: null,
+      prizeImage: solanaArt,
     };
     this.selectItem = this.selectItem.bind(this);
   }
 
   selectItem() {
+    spin(this.props.ID)
+    const prizeImage = prizeHashmap.get("A9tNwrcznAaNRN99Uz86J6vgcLQJMBRpdcpL6dDmirV1");
     if (this.state.selectedItem === null) {
-      const selectedItem = Math.floor(Math.random() * this.props.items.length);
+      const selectedItem = 5;
       if (this.props.onSelectItem) {
         this.props.onSelectItem(selectedItem);
       }
-      this.setState({ selectedItem });
+      this.setState({ selectedItem, prizeImage });
     } else {
-      this.setState({ selectedItem: null });
+      this.setState({ selectedItem: null, prizeImage: solanaArt });
       setTimeout(this.selectItem, 500);
     }
   }
 
   render() {
+    const { prizeImage } = this.state;
     const { selectedItem } = this.state;
     const { items } = this.props;
 
@@ -40,14 +53,11 @@ export default class Wheel extends React.Component {
     function ShowImage(props) {
       const wheelItem = props.wheelItem;
 
-      if (wheelItem === 'SMB') {
-        return <img src={smbArt} alt="smbArt" className='wheel-image'/>;
-      }
-      else if (wheelItem === 'Okay') {
-        return <img src={okayArt} alt="okayArt" className='wheel-image'/>;
+      if (wheelItem === 'prize6') {
+        return <img src={prizeImage} alt="solanaArt" className='wheel-image'/>;
       }
       else {
-        return <img src={solanaArt} alt="solanaArt" className='wheel-image'/>;
+        return <img src={images[Math.floor(Math.random() * images.length)]} alt="solanaArt" className='wheel-image'/>;
       }
     }
 

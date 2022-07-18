@@ -37,6 +37,11 @@ import {
   SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
 } from "./unlock";
 import { useAnchorWallet } from "@solana/wallet-adapter-react";
+import {
+  createUser,
+  getSpins,
+  checkTX
+} from "./utils";
 
 export interface HomeProps {
   connection: anchor.web3.Connection;
@@ -47,6 +52,7 @@ const Home = (props: HomeProps) => {
   const [showSpinner, setShowSpinner] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [serverDown, setServerDown] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [mintImages, setMintImages] = useState<[]>();
   const [currentKeyMints, setCurrentKeyMints] = useState<UserData[]>();
   const [alertState, setAlertState] = useState<AlertState>({
@@ -58,15 +64,40 @@ const Home = (props: HomeProps) => {
   const classes = useStyles();
 
   const places = [
-    'SMB', 'Okay', 'Solana', 'SMB', 'Okay', 'Solana',
-    'SMB', 'Okay', 'Solana', 'SMB', 'Okay', 'Solana'
+    'prize1', 'prize2', 'prize3', 'prize4', 'prize5', 'prize6',
+    'prize7', 'prize8', 'prize9', 'prize10', 'prize11', 'prize12'
   ]
   const { width, height } = useWindowSize()
   const wallet = useAnchorWallet()
   const { sendTransaction } = useWallet();
+  let transactionLoading = false;
 
   const onWin = () => {
     setShowConfetti(true);
+  }
+
+  const checkSpins = async () => {
+    if (!wallet)
+        return;
+    let hasSpins = await getSpins(wallet.publicKey.toString());
+    setShowSpinner(hasSpins);
+    if(transactionLoading) {
+      transactionLoading = !hasSpins;
+      setShowLoading(!hasSpins);
+    }
+  }
+
+  const sleep = (ms: number): Promise<void> => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const loadTransaction = async () => {
+    transactionLoading = true;
+    while (transactionLoading) {
+      checkSpins()
+      console.log("hi")
+      await sleep(3000);
+    }
   }
 
   const loadAndSetImages = async () => {
@@ -89,17 +120,6 @@ const Home = (props: HomeProps) => {
   };
 
   const onBet = async (mint: string) => {
-    // async function postData(url = '', data = {}) {
-    //   const response = await fetch(url, {
-    //     method: 'POST', // or 'PUT'
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(data),
-    //   })
-    
-    //   return response.json();
-    // }
     try {
       if (!wallet) {
         return;
@@ -163,7 +183,7 @@ const Home = (props: HomeProps) => {
     
       if(serverDown)
       {
-        let message = "Bet failed! Server is down.";
+        let message = "Transaction failed! Server is down.";
 
         setAlertState({
           open: true,
@@ -177,17 +197,13 @@ const Home = (props: HomeProps) => {
 
         await props.connection.confirmTransaction(mintTxId, 'processed');
 
-        // onBetKey(mintTxId);
-        
-        // postData('https://secure-fjord-13213.herokuapp.com/https://walrus-slot-server.herokuapp.com/api/bet', { "sig": mintTxId })
-        // .then(data => {
-        //   console.log('Bet:', data);
-        // })
-        // .catch((error) => {
-        //   console.error('Bet Error:', error);
-        // });
+        checkTX(wallet.publicKey, mintTxId, props.connection);
 
-        setShowSpinner(true);
+        setShowLoading(true);
+        transactionLoading = true;
+        //start timer
+        loadTransaction();
+
         setAlertState({
           open: true,
           message:
@@ -218,6 +234,14 @@ const Home = (props: HomeProps) => {
   useEffect(() => {
     loadAndSetImages();
   }, [currentKeyMints]);
+
+  useEffect(() => {
+    if (!wallet) {
+      return;
+    }
+    createUser(wallet.publicKey.toString());
+    checkSpins();
+  }, [wallet, props.connection]);
 
   useEffect(() => {
     if (!wallet) {
@@ -254,9 +278,13 @@ const Home = (props: HomeProps) => {
       </div>
       <div className="regular">
         <div>
-          {showSpinner ? (
+          {showLoading ? (
+            <div className={classes.loading}>
+              <CircularProgress/>
+            </div>
+          ) : showSpinner && wallet ? (
             // <Spinner />
-            <Wheel items={places}/>
+            <Wheel items={places} ID={wallet.publicKey.toString()}/>
           ) : (
             <Crate/>
           )}
@@ -307,6 +335,10 @@ interface AlertState {
 }
 
 const useStyles = makeStyles({
+  "loading": {
+    marginTop: "180px",
+    marginBottom: "180px"
+  },
   connectButton: {
     fontFamily: "Sora",
     fontWeight: "bold",
