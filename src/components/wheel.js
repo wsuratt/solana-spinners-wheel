@@ -10,6 +10,8 @@ import {
   prizeNameHashmap
 } from './prizeMaps.js'
 
+const prizeMint = "-1"
+
 const imageHashmap = new Map([
   ["prize1", images[Math.floor(Math.random() * images.length)]],
   ["prize2", images[Math.floor(Math.random() * images.length)]],
@@ -38,23 +40,25 @@ export default class Wheel extends React.Component {
   }
 
   selectItem() {
-    // spin(this.props.ID)
-    const prizeImage = prizeArtHashmap.get("13WrswTYAq17zUUfv5fBsYQqQzYKtZ8uqmUmsa6LFxUP");
-    if (this.state.selectedItem === null) {
-      const selectedItem = 5;
-      if (this.props.onSelectItem) {
-        this.props.onSelectItem(selectedItem);
+    const prizeMint = await spin(this.props.ID)
+    if (prizeMint != "-1") {
+      const prizeImage = prizeArtHashmap.get(prizeMint);
+      if (this.state.selectedItem === null) {
+        const selectedItem = 5;
+        if (this.props.onSelectItem) {
+          this.props.onSelectItem(selectedItem);
+        }
+        this.setState({ selectedItem, prizeImage });
+      } else {
+        this.setState({ selectedItem: null, prizeImage: images[0] });
+        setTimeout(this.selectItem, 500);
       }
-      this.setState({ selectedItem, prizeImage });
-    } else {
-      this.setState({ selectedItem: null, prizeImage: images[0] });
-      setTimeout(this.selectItem, 500);
     }
   }
 
   showConfetti() {
     setTimeout( () => {
-      this.props.onWin(prizeNameHashmap.get("13WrswTYAq17zUUfv5fBsYQqQzYKtZ8uqmUmsa6LFxUP").toUpperCase())
+      this.props.onWin(prizeNameHashmap.get(prizeMint).toUpperCase())
   }, 4000);
   }
 

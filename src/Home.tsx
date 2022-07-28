@@ -211,13 +211,13 @@ const Home = (props: HomeProps) => {
         setAlertState({
           open: true,
           message:
-            "Bet initialized! Please wait for page to reload.",
+            "Transaction initialized! Please wait for page to reload.",
           severity: "success",
         });
       }
     } catch (error: any) {
       // TODO: blech:
-      let message = error.msg || "Bet failed! Please try again!";
+      let message = error.msg || "Transaction failed! Please try again!";
       if (!error.msg) {
         if (error.message.indexOf("0x138")) {
         } else if (error.message.indexOf("0x135")) {
