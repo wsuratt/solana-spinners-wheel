@@ -21,7 +21,7 @@ export default function LeaderCard(props: any) {
     const [open, setOpen] = useState(false);
 
     const initiateBet = async (onBet: any, handle: any) => {
-        console.log(" i am trying to bet ", handle);
+        console.log(" i am trying to use ", handle);
         setAmIMinting(true);
         let tx = await onBet(handle);
         setAmIMinting(false);
