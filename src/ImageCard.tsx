@@ -41,7 +41,7 @@ export default function LeaderCard(props: any) {
     };
   const font = "Lato";
 
-  const classes = useStyles();
+  const classes = imageStyles();
 
   return (
       <div>
@@ -123,7 +123,7 @@ export default function LeaderCard(props: any) {
   );
 }
 
-const useStyles = makeStyles({
+const imageStyles = makeStyles({
   root: {
     backgroundColor: "#242424",
     padding:"10px",
