@@ -67,6 +67,15 @@ export default function LeaderCard(props: any) {
               </DialogActions>
           </Dialog>
           <Card
+              style={{ backgroundColor: "none" }}
+              sx={{
+                  borderRadius: "5px",
+                  border: "2px whitesmoke",
+                  borderColor: "none",
+                  maxHeight: 600,
+                  padding:"5px"
+
+              }}
               className={classes.root}
           >
 
@@ -83,6 +92,24 @@ export default function LeaderCard(props: any) {
                 <Button
                     onClick={() => {
                         handleClickOpen()
+                    }}
+
+                    sx={{
+                        hover: {
+                            "&:hover": {
+                                backgroundColor: "whitesmoke",
+                            },
+                        },
+                        marginTop: "20px",
+                        marginLeft:"30%",
+                        width: "100px",
+                        height: "50px",
+
+                        fontFamily: font,
+                        font: "caption",
+                        backgroundColor: "whitesmoke",
+                        borderRadius: "40px",
+                        borderColor:"whitesmoke"
                     }}
                     size="medium"
                     className={classes.button}

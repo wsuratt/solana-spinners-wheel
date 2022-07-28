@@ -366,7 +366,7 @@ interface AlertState {
 }
 
 const useStyles = makeStyles({
-  "loading": {
+  loading: {
     marginTop: "180px",
     marginBottom: "180px"
   },
