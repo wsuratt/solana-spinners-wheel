@@ -325,7 +325,7 @@ const Home = (props: HomeProps) => {
                 <Typography variant="h6" sx={{ marginTop: "50px", fontFamily: "Sora", color: "black" }}>
                   Your prize should appear in your wallet within the next few minutes.
                 </Typography>
-                <Button sx={{ backgroundColor: "black" }} onClick={() => window.location.reload()}>
+                <Button sx={{ color: "white", backgroundColor: "black", marginTop: "50px", height: "75px", width: "200px", fontSize: "30px" }} onClick={() => window.location.reload()}>
                   Home
                 </Button>
               </div>
