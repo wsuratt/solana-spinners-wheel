@@ -65,13 +65,16 @@ export default function LeaderCard(props: any) {
               </DialogActions>
           </Dialog>
           <Card
-              style={{ backgroundColor: "none" }}
               sx={{
+                  backgroundColor: "#242424",
                   borderRadius: "5px",
                   border: "2px whitesmoke",
                   borderColor: "none",
                   maxHeight: 600,
-                  padding:"5px"
+                  padding:"10px",
+                  fontFamily:'Lato',
+                  color:"white",
+                  paddingTop: "20px"
 
               }}
           >
@@ -91,19 +94,21 @@ export default function LeaderCard(props: any) {
                     }}
 
                     sx={{
+                        backgroundColor: "#242424",
+                        color:"whitesmoke",
+                        marginLeft:"0",
+                        padding:"5px",
                         hover: {
                             "&:hover": {
                                 backgroundColor: "whitesmoke",
                             },
                         },
                         marginTop: "20px",
-                        marginLeft:"30%",
                         width: "100px",
                         height: "50px",
 
                         fontFamily: font,
                         font: "caption",
-                        backgroundColor: "whitesmoke",
                         borderRadius: "40px",
                         borderColor:"whitesmoke"
                     }}
