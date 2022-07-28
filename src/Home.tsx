@@ -332,7 +332,7 @@ const Home = (props: HomeProps) => {
             ) : mintImages ? (
               <NftGrid
                 props={mintImages}
-                onBet={onBet}
+                // onBet={onBet}
               />
             ) : null }
             { !showSpinner ? (

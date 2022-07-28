@@ -39,7 +39,7 @@ export default class Wheel extends React.Component {
     this.OnClick = this.OnClick.bind(this);
   }
 
-  selectItem() {
+  selectItem = async () => {
     const prizeMint = await spin(this.props.ID)
     if (prizeMint != "-1") {
       const prizeImage = prizeArtHashmap.get(prizeMint);
