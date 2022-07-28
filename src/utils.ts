@@ -1,17 +1,4 @@
 import * as anchor from "@project-serum/anchor";
-import { web3 } from '@project-serum/anchor';
-
-export const SOLWAGER_PROGRAM = new anchor.web3.PublicKey(
-  "8VxWJzmYtVrC755tFjQGMLhAN3hgPfCNPReEtN3wBzYz"
-);
-
-const FEE_WALLET = new anchor.web3.PublicKey(
-  "8WnqfBUM4L13fBUudvjstHBEmUcxTPPX7DGkg3iyMmc8"
-);
-
-const POOL_PDA = new anchor.web3.PublicKey(
-  "6N4dfkqdTFsdJuu6gvvKCUhUX4swWqeTRvt4zonJGgW4"
-);
 
 const url = "https://solana-spinners.herokuapp.com";
 // const url = "http://localhost:4800";

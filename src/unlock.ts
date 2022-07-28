@@ -16,8 +16,8 @@ export const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID = new anchor.web3.PublicKey
 const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
   "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
 );
-const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-// export const connection = new Connection("https://withered-delicate-bird.solana-mainnet.quiknode.pro/59cfd581e09e0c25b375a642f91a4db010cf27f6/", "confirmed");
+// const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+export const connection = new Connection("https://withered-delicate-bird.solana-mainnet.quiknode.pro/59cfd581e09e0c25b375a642f91a4db010cf27f6/", "confirmed");
 
 const {
   metadata: { MetadataData },
@@ -101,7 +101,7 @@ export const getKeyMints = async (
         continue
       }
       let accountMetaData = MetadataData.deserialize(info.data)
-      if (accountMetaData.updateAuthority !== "FUsMF4c65cCqkyrEHfn4V3hgUAjCVN9FDiEr5jWuoXsA") {
+      if (accountMetaData.updateAuthority !== "GYUGP6BdXQFionk98bjV7tDVNARfVwZmja5WQsD1yUit") {
         continue
       }
 

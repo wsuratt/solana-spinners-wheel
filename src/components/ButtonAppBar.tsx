@@ -12,33 +12,11 @@ import "@fontsource/sora";
 export default function ButtonAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ bgcolor: "white" }}>
+      <AppBar position="static" sx={{ bgcolor: "black" }}>
         <Toolbar>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "black", fontFamily: "Sora", fontSize: "2em", fontWeight: "bold" }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#EDB257", fontFamily: "Sora", fontSize: "2em", fontWeight: "bold" }}>
             Solana Spinners
           </Typography>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
-          <img src={logo} alt="logo"/>
         </Toolbar>
       </AppBar>
     </Box>

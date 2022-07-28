@@ -50,9 +50,11 @@ export interface HomeProps {
 const Home = (props: HomeProps) => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
+  const [showWon, setShowWon] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [serverDown, setServerDown] = useState(false);
   const [showLoading, setShowLoading] = useState(false);
+  const [prizeName, setPrizeName] = useState("");
   const [mintImages, setMintImages] = useState<[]>();
   const [currentKeyMints, setCurrentKeyMints] = useState<UserData[]>();
   const [alertState, setAlertState] = useState<AlertState>({
@@ -72,8 +74,10 @@ const Home = (props: HomeProps) => {
   const { sendTransaction } = useWallet();
   let transactionLoading = false;
 
-  const onWin = () => {
+  const onWin = (name: string) => {
     setShowConfetti(true);
+    setShowWon(true);
+    setPrizeName(name);
   }
 
   const checkSpins = async () => {
@@ -277,30 +281,53 @@ const Home = (props: HomeProps) => {
         <MobilePage/>
       </div>
       <div className="regular">
+        { showConfetti ? (
+          <Confetti />
+        ) : 
+          null
+        }
         <div>
           {showLoading ? (
             <div className={classes.loading}>
               <CircularProgress/>
             </div>
           ) : showSpinner && wallet ? (
-            // <Spinner />
-            <Wheel items={places} ID={wallet.publicKey.toString()}/>
+            <Wheel items={places} onWin={onWin} ID={wallet.publicKey.toString()}/>
           ) : (
             <Crate/>
           )}
           <div className="content">
-            {showSpinner ? (
+            { !showSpinner ? (
+              <div>
+                <Typography variant="h3" sx={{ fontFamily: "Sora", fontWeight: "bold", color: "black" }}>
+                  SELECT WALLET AND KEY
+                </Typography>
+              </div>
+            ) : null }
+            {showSpinner && !showWon ? (
               <div className="wheelCover">
                 <Typography variant="h3" sx={{ fontFamily: "Sora", fontWeight: "bold", color: "black" }}>
                   CLICK WHEEL TO SPIN
                 </Typography>
                 <Typography variant="h1" sx={{ fontFamily: "Sora", fontWeight: "bold", color: "black", marginTop: "50px" }}>
-                  PRIZES*
+                  PRIZES
                 </Typography>
                 <Gallery />
                 <Typography variant="h6" sx={{ marginTop: "50px", fontFamily: "Sora", color: "black" }}>
-                  *These are not the actual prizes and are for demonstration purposes only.
+                  These prizes are all available to be won from spinning the wheel.
                 </Typography>
+              </div>
+            ) : showWon ? (
+              <div className="wheelCover">
+                <Typography variant="h3" sx={{ fontFamily: "Sora", fontWeight: "bold", color: "black" }}>
+                  YOU WON {prizeName}!
+                </Typography>
+                <Typography variant="h6" sx={{ marginTop: "50px", fontFamily: "Sora", color: "black" }}>
+                  Your prize should appear in your wallet within the next few minutes.
+                </Typography>
+                <Button sx={{ backgroundColor: "black" }} onClick={() => window.location.reload()}>
+                  Home
+                </Button>
               </div>
             ) : mintImages ? (
               <NftGrid
@@ -308,7 +335,11 @@ const Home = (props: HomeProps) => {
                 onBet={onBet}
               />
             ) : null }
-            <WalletMultiButton className={classes.connectButton}/>
+            { !showSpinner ? (
+              <div>
+                <WalletMultiButton className={classes.connectButton}/>
+              </div>
+            ) : null }
           </div>
         </div>
       </div>

@@ -1,17 +1,27 @@
 import React from 'react';
-import smbArt from '../assets/smb.png'
-import okayArt from '../assets/okay-bears.png'
-import solanaArt from '../assets/solana-logo.png'
 import {
   spin
 } from "../utils";
 
 import './wheel.css';
+import {
+  images,
+  prizeArtHashmap,
+  prizeNameHashmap
+} from './prizeMaps.js'
 
-const images = [smbArt, okayArt, solanaArt];
-
-const prizeHashmap = new Map([
-  ["A9tNwrcznAaNRN99Uz86J6vgcLQJMBRpdcpL6dDmirV1", smbArt]
+const imageHashmap = new Map([
+  ["prize1", images[Math.floor(Math.random() * images.length)]],
+  ["prize2", images[Math.floor(Math.random() * images.length)]],
+  ["prize3", images[Math.floor(Math.random() * images.length)]],
+  ["prize4", images[Math.floor(Math.random() * images.length)]],
+  ["prize5", images[Math.floor(Math.random() * images.length)]],
+  ["prize7", images[Math.floor(Math.random() * images.length)]],
+  ["prize8", images[Math.floor(Math.random() * images.length)]],
+  ["prize9", images[Math.floor(Math.random() * images.length)]],
+  ["prize10", images[Math.floor(Math.random() * images.length)]],
+  ["prize11", images[Math.floor(Math.random() * images.length)]],
+  ["prize12", images[Math.floor(Math.random() * images.length)]]
 ])
 
 export default class Wheel extends React.Component {
@@ -19,14 +29,17 @@ export default class Wheel extends React.Component {
     super(props);
     this.state = {
       selectedItem: null,
-      prizeImage: solanaArt,
+      prizeImage: images[0],
+      canSpin: true,
     };
     this.selectItem = this.selectItem.bind(this);
+    this.showConfetti = this.showConfetti.bind(this);
+    this.OnClick = this.OnClick.bind(this);
   }
 
   selectItem() {
-    spin(this.props.ID)
-    const prizeImage = prizeHashmap.get("A9tNwrcznAaNRN99Uz86J6vgcLQJMBRpdcpL6dDmirV1");
+    // spin(this.props.ID)
+    const prizeImage = prizeArtHashmap.get("13WrswTYAq17zUUfv5fBsYQqQzYKtZ8uqmUmsa6LFxUP");
     if (this.state.selectedItem === null) {
       const selectedItem = 5;
       if (this.props.onSelectItem) {
@@ -34,8 +47,22 @@ export default class Wheel extends React.Component {
       }
       this.setState({ selectedItem, prizeImage });
     } else {
-      this.setState({ selectedItem: null, prizeImage: solanaArt });
+      this.setState({ selectedItem: null, prizeImage: images[0] });
       setTimeout(this.selectItem, 500);
+    }
+  }
+
+  showConfetti() {
+    setTimeout( () => {
+      this.props.onWin(prizeNameHashmap.get("13WrswTYAq17zUUfv5fBsYQqQzYKtZ8uqmUmsa6LFxUP").toUpperCase())
+  }, 4000);
+  }
+
+  OnClick() {
+    if (this.state.canSpin) {
+      this.selectItem();
+      this.showConfetti();
+      this.setState({ canSpin: false });
     }
   }
 
@@ -57,13 +84,13 @@ export default class Wheel extends React.Component {
         return <img src={prizeImage} alt="solanaArt" className='wheel-image'/>;
       }
       else {
-        return <img src={images[Math.floor(Math.random() * images.length)]} alt="solanaArt" className='wheel-image'/>;
+        return <img src={imageHashmap.get(wheelItem)} alt="solanaArt" className='wheel-image'/>;
       }
     }
 
     return (
       <div className="wheel-container">
-        <div className={`wheel ${spinning}`} style={wheelVars} onClick={this.selectItem}>
+        <div className={`wheel ${spinning}`} style={wheelVars} onClick={this.OnClick}>
           {items.map((item, index) => (
             <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
               <ShowImage wheelItem={item}/>
