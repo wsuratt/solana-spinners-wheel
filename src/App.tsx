@@ -11,7 +11,7 @@ import {
   } from "@solana/wallet-adapter-wallets";
 import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 import Home from './Home'
-// import Maintenance from './Maintenance'
+import Maintenance from './Maintenance'
 import { clusterApiUrl } from '@solana/web3.js';
 import { createTheme, ThemeProvider } from "@material-ui/core";
 
