@@ -367,8 +367,6 @@ interface AlertState {
 
 const useStyles = makeStyles({
   loading: {
-    marginTop: "180px",
-    marginBottom: "180px"
   },
   connectButton: {
     fontFamily: "Sora",
