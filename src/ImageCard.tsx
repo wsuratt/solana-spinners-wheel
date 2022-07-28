@@ -72,8 +72,6 @@ export default function LeaderCard(props: any) {
                   borderRadius: "5px",
                   border: "2px whitesmoke",
                   borderColor: "none",
-                  width: 150,
-                  minHeight: 150,
                   maxHeight: 600,
                   padding:"5px"
 
