@@ -4,6 +4,11 @@
   padding-bottom: 20em;
 }
 
+.loading {
+  margin-top: 180px;
+  margin-bottom: 180px;
+}
+
 .showConfetti {
   display: block;
 }

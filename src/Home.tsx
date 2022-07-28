@@ -288,7 +288,7 @@ const Home = (props: HomeProps) => {
         }
         <div>
           {showLoading ? (
-            <div className={classes.loading}>
+            <div className="loading">
               <CircularProgress/>
             </div>
           ) : showSpinner && wallet ? (
@@ -366,8 +366,6 @@ interface AlertState {
 }
 
 const useStyles = makeStyles({
-  loading: {
-  },
   connectButton: {
     fontFamily: "Sora",
     fontWeight: "bold",
@@ -403,6 +401,6 @@ const useStyles = makeStyles({
       padding: "0.3rem"
     },
   },
-});
+}, {index: 1});
 
 export default Home;
