@@ -41,8 +41,6 @@ export default function LeaderCard(props: any) {
     };
   const font = "Lato";
 
-  const classes = imageStyles();
-
   return (
       <div>
           <Dialog
@@ -76,7 +74,6 @@ export default function LeaderCard(props: any) {
                   padding:"5px"
 
               }}
-              className={classes.root}
           >
 
               <img
@@ -84,10 +81,9 @@ export default function LeaderCard(props: any) {
                   width= "140"
 
                   src={props.image}
-                  className={classes.image}
                   alt={props.image}
               />
-              <Typography className = {classes.typo}> {props.name} </Typography>
+              <Typography> {props.name} </Typography>
 
                 <Button
                     onClick={() => {
@@ -112,7 +108,6 @@ export default function LeaderCard(props: any) {
                         borderColor:"whitesmoke"
                     }}
                     size="medium"
-                    className={classes.button}
                     variant="outlined"
 
                 >
@@ -122,43 +117,3 @@ export default function LeaderCard(props: any) {
       </div>
   );
 }
-
-const imageStyles = makeStyles({
-  root: {
-    backgroundColor: "#242424",
-    padding:"10px",
-    fontFamily:'Lato',
-    color:"white"
-  },
-  image:{
-  
-  padding:"5px",
-
-   
-
-  },
-  typo:{
-    textAlign:"center",
-    fontFamily:'Lato',
-    color:"white",
-    fontSize:"20px",
-    padding:"2px"
-    
-  },
-  button: {
-    backgroundColor: "#242424",
-    color:"whitesmoke",
-    marginLeft:"0",
-    padding:"5px"
-    
-   
-  },
-  button1: {
-    backgroundColor: "#242424",
-    color:"whitesmoke",
-    marginLeft:"36%",
-    padding:"5px",
-    fontSize:"20px"
-   
-  },
-}, {index: 1});

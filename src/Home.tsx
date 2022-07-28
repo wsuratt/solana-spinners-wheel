@@ -401,6 +401,6 @@ const useStyles = makeStyles({
       padding: "0.3rem"
     },
   },
-}, {index: 2});
+}, {index: 1});
 
 export default Home;
