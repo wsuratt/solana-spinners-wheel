@@ -10,7 +10,7 @@ import {
   prizeNameHashmap
 } from './prizeMaps.js'
 
-const prizeMint = "-1"
+let prizeMintArray = ["-1"]
 
 const imageHashmap = new Map([
   ["prize1", images[Math.floor(Math.random() * images.length)]],
@@ -40,9 +40,10 @@ export default class Wheel extends React.Component {
   }
 
   selectItem = async () => {
-    const prizeMint = await spin(this.props.ID)
-    if (prizeMint != "-1") {
-      const prizeImage = prizeArtHashmap.get(prizeMint);
+    prizeMintArray = await spin(this.props.ID)
+    if (prizeMintArray[0] != "-1") {
+      console.log(prizeMintArray[0])
+      const prizeImage = prizeArtHashmap.get(prizeMintArray[0]);
       if (this.state.selectedItem === null) {
         const selectedItem = 5;
         if (this.props.onSelectItem) {
@@ -58,7 +59,7 @@ export default class Wheel extends React.Component {
 
   showConfetti() {
     setTimeout( () => {
-      this.props.onWin(prizeNameHashmap.get(prizeMint).toUpperCase())
+      this.props.onWin(prizeNameHashmap.get(prizeMintArray[0]).toUpperCase())
   }, 4000);
   }
 

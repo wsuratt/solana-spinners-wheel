@@ -99,7 +99,6 @@ const Home = (props: HomeProps) => {
     transactionLoading = true;
     while (transactionLoading) {
       checkSpins()
-      console.log("hi")
       await sleep(3000);
     }
   }
@@ -325,14 +324,24 @@ const Home = (props: HomeProps) => {
                 <Typography variant="h6" sx={{ marginTop: "50px", fontFamily: "Sora", color: "black" }}>
                   Your prize should appear in your wallet within the next few minutes.
                 </Typography>
-                <Button sx={{ color: "white", backgroundColor: "black", marginTop: "50px", height: "75px", width: "200px", fontSize: "30px" }} onClick={() => window.location.reload()}>
+                <Button sx={{
+                          color: "white",
+                          backgroundColor: "black",
+                          marginTop: "50px",
+                          height: "75px",
+                          width: "200px",
+                          fontSize: "30px",
+                          "&:hover": {
+                            backgroundColor: '#242424'
+                          },
+                        }} onClick={() => window.location.reload()}>
                   Home
                 </Button>
               </div>
             ) : mintImages ? (
               <NftGrid
                 props={mintImages}
-                // onBet={onBet}
+                onBet={onBet}
               />
             ) : null }
             { !showSpinner ? (

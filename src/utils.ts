@@ -190,7 +190,7 @@ export const spin = async (ID: string): Promise<string> => {
   let mint = "";
   await postData(url + '/api/spin', { "ID": ID })
   .then(data => {
-    mint = data.mint;
+    mint = data;
   })
   .catch((error) => {
     console.error('error:', error);
