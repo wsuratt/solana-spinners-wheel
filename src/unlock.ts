@@ -17,7 +17,8 @@ const TOKEN_METADATA_PROGRAM_ID = new anchor.web3.PublicKey(
   "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s"
 );
 // const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
-export const connection = new Connection("https://withered-delicate-bird.solana-mainnet.quiknode.pro/59cfd581e09e0c25b375a642f91a4db010cf27f6/", "confirmed");
+// export const connection = new Connection("https://withered-delicate-bird.solana-mainnet.quiknode.pro/59cfd581e09e0c25b375a642f91a4db010cf27f6/", "confirmed");
+export const connection = new Connection(clusterApiUrl("mainnet-beta"), "confirmed");
 
 const {
   metadata: { MetadataData },
